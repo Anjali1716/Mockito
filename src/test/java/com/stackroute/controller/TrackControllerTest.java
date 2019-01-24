@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -63,6 +64,35 @@ public class TrackControllerTest {
 
 
     }
+
+    @Test
+
+    public void updateTrack() throws Exception
+
+    {
+
+        when(trackService.updateTrack(any())).thenReturn(track);
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/track")
+                .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andDo(MockMvcResultHandlers.print());
+
+    }
+
+    @Test
+
+    public void deleteTrack() throws Exception
+
+    {
+
+        when(trackService.delTrack(anyInt())).thenReturn(true);
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/track").contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+
+    }
+
+
 
     @Test
     public void displayTracks() throws Exception {

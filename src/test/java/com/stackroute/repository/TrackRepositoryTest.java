@@ -63,7 +63,7 @@ public class TrackRepositoryTest {
 
         List<Track> list = trackRepository.findAll();
 
-        Assert.assertEquals("MINE SONG",list.get(0).getTrackName());
+        Assert.assertEquals(02,list.get(0).getId());
 
 
     }
